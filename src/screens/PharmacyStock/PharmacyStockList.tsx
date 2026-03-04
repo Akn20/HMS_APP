@@ -86,6 +86,10 @@ export default function PharmacyStockList() {
     }
   }, [showDeleted]);
 
+useEffect(() => {
+  refresh();
+}, [showDeleted]);
+
  useEffect(() => {
   const interval = setInterval(() => {
     refresh();   // refresh current mode

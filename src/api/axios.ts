@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from 'D:/internship/EXPO_APP/HIMS/config/api'; // adjust path if needed
+import { API_URL } from '../screens/PharmacyStock/api'; // adjust path if needed
 
 const instance = axios.create({
   baseURL: API_URL,
