@@ -73,3 +73,4 @@ export const restoreStock = async (id: string) => {
 export const permanentlyDeleteStock = async (id: string) => {
   return await axios.delete(`/pharmacy/stock-force-delete/${id}`);
 };
+

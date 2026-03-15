@@ -4,8 +4,16 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Articles, Components, Home, Profile, Register, Pro, } from '../screens';
 import {useScreenOptions, useTranslation} from '../hooks';
 import StockList from '../screens/PharmacyStock/PharmacyStockList';
-import LowStock from '../screens/LowStock';
-
+import LowStocks from '../screens/PharmacyStock/LowStocks';
+import ExpiryList from '../screens/PharmacyExpiry/ExpiryList';
+import ExpiryDetail from '../screens/PharmacyExpiry/ExpiryDetail';
+import StockDetails from '../screens/PharmacyStock/StockDetails';
+import TokenQueueList from '../screens/ReceptionistToken/TokenQueueList';
+import TokenDetails from '../screens/ReceptionistToken/TokenDetails';
+import TokenReassign from '../screens/ReceptionistToken/TokenReassign';
+import NursingNotesList from '../screens/NursingNotes/NursingNotesList';
+import NursingNoteForm from '../screens/NursingNotes/NursingNoteForm';
+import NursingNoteDetails from '../screens/NursingNotes/NursingNoteDetails';
 const Stack = createStackNavigator();
 
 export default () => {
@@ -24,11 +32,55 @@ export default () => {
         component={StockList}
         options={{ title: 'Stock Management' }}
       />
+  <Stack.Screen
+    name="LowStocks"
+    component={LowStocks}
+  />
       <Stack.Screen
-        name="LowStock"
-        component={LowStock}
-        options={{ title: 'Low Stock' }}
+        name="StockDetails"
+        component={StockDetails}
+        options={{ title: 'Stock Details' }}
       />
+      <Stack.Screen
+        name="ExpiryList"
+        component={ExpiryList}
+        options={{ title: 'Expiry Management' }}
+      />
+          <Stack.Screen
+      name="ExpiryDetail"
+      component={ExpiryDetail}
+    />
+
+      <Stack.Screen
+        name='TokenQueueList'
+        component={TokenQueueList}
+        options={{title: 'Token Management'}}
+        />
+
+      <Stack.Screen
+        name='TokenDetails'
+        component={TokenDetails}
+        options={{title:'Token Details'}}
+        />
+
+        <Stack.Screen
+          name="TokenReassign"
+          component={TokenReassign}
+        />
+        <Stack.Screen
+          name="NursingNotesList"
+          component={NursingNotesList}
+          options={{ title: 'Nurse Management' }}
+        />
+        <Stack.Screen
+          name="NursingNoteForm"
+          component={NursingNoteForm}
+        />
+        <Stack.Screen
+          name="NursingNoteDetails"
+          component={NursingNoteDetails}
+        />
+
       <Stack.Screen
         name="Components"
         component={Components}

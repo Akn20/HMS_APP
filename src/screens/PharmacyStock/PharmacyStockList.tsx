@@ -12,10 +12,10 @@ import {
   View,
 } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
-
+import LowStocks from '../../screens/PharmacyStock/LowStocks';
 import {useTheme} from '../../hooks';
 import {Block, Button, Input, Switch, Text, Image} from '../../components';
-
+import { useNavigation } from '@react-navigation/native';
 import {
   getStock,
   getDeletedStock,
@@ -47,8 +47,12 @@ export default function PharmacyStockList() {
   const [loading, setLoading] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(240);
 
-  const [query, setQuery] = useState('');
+const navigation = useNavigation<any>();
+  
+const [query, setQuery] = useState('');
   const [showDeleted, setShowDeleted] = useState(false);
+
+  
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -220,64 +224,99 @@ const onSave = async () => {
   // ===============================
   // ROW
   // ===============================
-  const renderRow = ({item, index}: any) => {
-    const isDeleted = !!item.deleted_at;
+// ===============================
+// ROW
+// ===============================
+const renderRow = ({ item, index }: any) => {
+  const isDeleted = !!item.deleted_at;
 
-    return (
-      <View
-        style={[
-          styles.row,
-          {borderColor: colors.gray, opacity: isDeleted ? 0.5 : 1},
-        ]}>
-        <Text style={{width: 25}}>{index + 1}</Text>
+  return (
+    <TouchableOpacity
+      style={[
+        styles.row,
+        { borderColor: colors.gray, opacity: isDeleted ? 0.5 : 1 },
+      ]}
+      onPress={() =>
+        navigation.navigate('StockDetails', { id: item.id })
+      }
+      activeOpacity={0.8}
+    >
+      <Text style={{ width: 25 }}>{index + 1}</Text>
 
-        <View style={{flex: 1}}>
-          <Text semibold>{item.medicine?.medicine_name}</Text>
-          <Text size={12}>Batch: {item.batch_number}</Text>
-          <Text size={12}>
-            Exp: {new Date(item.expiry_date).toLocaleDateString()}
-          </Text>
-        </View>
+      <View style={{ flex: 1 }}>
+        <Text semibold>{item.medicine?.medicine_name}</Text>
 
-        <View style={{width: 100}}>
-          <StatusPill row={item} />
-        </View>
+        <Text size={12}>
+          Batch: {item.batch_number}
+        </Text>
 
-        <View style={{width: 90, flexDirection: 'row', justifyContent: 'flex-end'}}>
-          {!isDeleted ? (
-            <>
-              <TouchableOpacity
-                style={{marginRight: 12}}
-                onPress={() => openEdit(item)}>
-                <MaterialIcons name="edit" size={20} color={colors.primary} />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => softDelete(item)}>
-                <MaterialIcons name="delete" size={20} color={colors.danger} />
-              </TouchableOpacity>
-            </>
-          ) : (
-            <>
-              <TouchableOpacity
-                style={{marginRight: 12}}
-                onPress={() => restore(item)}>
-                <MaterialIcons name="restore" size={20} color={colors.primary} />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => permanentDelete(item)}>
-                <MaterialIcons
-                  name="delete-forever"
-                  size={22}
-                  color={colors.danger}
-                />
-              </TouchableOpacity>
-            </>
-          )}
-        </View>
+        <Text size={12}>
+          Exp: {new Date(item.expiry_date).toLocaleDateString()}
+        </Text>
       </View>
-    );
-  };
 
+      <View style={{ width: 100 }}>
+        <StatusPill row={item} />
+      </View>
+
+      <View
+        style={{
+          width: 90,
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+        }}
+      >
+        {!isDeleted ? (
+          <>
+            <TouchableOpacity
+              style={{ marginRight: 12 }}
+              onPress={() => openEdit(item)}
+            >
+              <MaterialIcons
+                name="edit"
+                size={20}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => softDelete(item)}
+            >
+              <MaterialIcons
+                name="delete"
+                size={20}
+                color={colors.danger}
+              />
+            </TouchableOpacity>
+          </>
+        ) : (
+          <>
+            <TouchableOpacity
+              style={{ marginRight: 12 }}
+              onPress={() => restore(item)}
+            >
+              <MaterialIcons
+                name="restore"
+                size={20}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => permanentDelete(item)}
+            >
+              <MaterialIcons
+                name="delete-forever"
+                size={22}
+                color={colors.danger}
+              />
+            </TouchableOpacity>
+          </>
+        )}
+      </View>
+    </TouchableOpacity>
+  );
+};
   // ===============================
   // UI
   // ===============================
@@ -309,7 +348,8 @@ const onSave = async () => {
             </Block>
              
             <Button  
-            onPress={() => setShowLowStock(!showLowStock)}
+            onPress={() => navigation.navigate('LowStocks')}
+      
             >
              <Block
                 flex={1}
@@ -325,8 +365,8 @@ const onSave = async () => {
                   color={colors.white}
                   source={assets.warning}
                 />
-                <Text size={12} color={colors.white}>
-                  {showLowStock ? 'low Stock' : 'ALL  Stock'}
+                <Text size={16} color={colors.white}>
+                  Low Stocks
                 </Text>
             </Block>
             

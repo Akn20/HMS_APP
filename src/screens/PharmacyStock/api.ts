@@ -14,7 +14,7 @@
  */
 
 // 🔧 UPDATE THIS WITH YOUR BACKEND IP
-export const API_HOST = "http://192.168.1.3:8000";  // Replace XXX with your actual IP
+export const API_HOST = "http://192.168.1.7:8000";  // Replace XXX with your actual IP
 
 // Build the full API URL
 export const API_URL = `${API_HOST}/api`;
