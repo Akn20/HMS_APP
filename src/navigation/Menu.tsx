@@ -11,6 +11,7 @@ import {
 import Screens from './Screens';
 import {Block, Text, Switch, Button, Image} from '../components';
 import {useData, useTheme, useTranslation} from '../hooks';
+import { name } from '../constants/regex';
 
 
 const Drawer = createDrawerNavigator();
@@ -86,6 +87,7 @@ const DrawerContent = (
   // screen list for Drawer menu
   const screens = [
     {name: t('screens.home'), to: 'Home', icon: assets.home},
+    {name: 'Pharmacy Dashboard', to: 'PharmacyDashboard', icon: assets.home},
     {name: 'Stock Management', to: 'StockList', icon: assets.office},
     {name: 'Low Stock', to: 'LowStocks', icon: assets.warning},
     {name: 'Expiry Management', to: 'ExpiryList', icon: assets.warning},

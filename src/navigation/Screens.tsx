@@ -14,6 +14,7 @@ import TokenReassign from '../screens/ReceptionistToken/TokenReassign';
 import NursingNotesList from '../screens/NursingNotes/NursingNotesList';
 import NursingNoteForm from '../screens/NursingNotes/NursingNoteForm';
 import NursingNoteDetails from '../screens/NursingNotes/NursingNoteDetails';
+import PharmacyDashboard from '../screens/PharmacyDashboard/PharmacyDashboard';
 const Stack = createStackNavigator();
 
 export default () => {
@@ -26,6 +27,11 @@ export default () => {
         name="Home"
         component={Home}
         options={{title: t('navigation.home')}}
+      />
+        <Stack.Screen
+        name="PharmacyDashboard"
+        component={PharmacyDashboard}
+        options={{ title: 'Pharmacy Dashboard' }}
       />
       <Stack.Screen
         name="StockList"
