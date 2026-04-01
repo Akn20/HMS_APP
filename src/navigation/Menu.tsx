@@ -91,6 +91,7 @@ const DrawerContent = (
     {name: 'Stock Management', to: 'StockList', icon: assets.office},
     {name: 'Low Stock', to: 'LowStocks', icon: assets.warning},
     {name: 'Expiry Management', to: 'ExpiryList', icon: assets.warning},
+    {name: 'Emergency Registration', to: 'EmergencyRegistration', icon: assets.bell},
     {name: 'Token Management', to: 'TokenQueueList', icon:assets.bell},
     {name: 'Nurse Management', to: 'NursingNotesList', icon: assets.bell}, 
     {name: t('screens.components'), to: 'Components', icon: assets.components},

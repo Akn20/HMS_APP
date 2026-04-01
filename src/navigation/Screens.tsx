@@ -15,6 +15,7 @@ import NursingNotesList from '../screens/NursingNotes/NursingNotesList';
 import NursingNoteForm from '../screens/NursingNotes/NursingNoteForm';
 import NursingNoteDetails from '../screens/NursingNotes/NursingNoteDetails';
 import PharmacyDashboard from '../screens/PharmacyDashboard/PharmacyDashboard';
+import EmergencyRegistration from '../screens/EmergencyRegistration/EmergencyRegistration';
 const Stack = createStackNavigator();
 
 export default () => {
@@ -69,6 +70,11 @@ export default () => {
         options={{title:'Token Details'}}
         />
 
+        <Stack.Screen
+          name="EmergencyRegistration"
+          component={EmergencyRegistration}
+          options={{ title: 'Emergency Registration' }}
+        />
         <Stack.Screen
           name="TokenReassign"
           component={TokenReassign}
